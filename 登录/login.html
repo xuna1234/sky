@@ -1,0 +1,613 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0030)http://buzz.yeesight.com/login -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<base href="http://buzz.yeesight.com:80/">--><base href=".">
+
+    <title>用户登录</title>
+    <!--seo优化-->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--qq第三方登录-->
+   <!-- <meta property="qc:admins" content="500310624226155317046375">
+    <script src="js/qc-1.0.1.js" type="text/javascript" data-appid="101331242" data-redirecturi="http://www.tianjiao.com/login/register/thirdLogin" charset="utf-8"></script>
+    <meta property="wb:webmaster" content="7b7bc27532130acc">-->
+    <!--<link rel="stylesheet" href="css/layer.css">-->
+    <!--<script type="application/javascript" src="js/layer.js"></script>-->
+    <script src="js/wxLogin.js" data-appid="wxcb178b7413d4aae4"></script>
+    <script>
+        var loc=window.location.href;
+
+        if(loc.indexOf("?")!=-1){
+            //alert(loc.indexOf("?"));
+            window.location.href=window.location.href.substring(0,loc.indexOf("?"));
+        }
+
+    </script>
+    <style type="text/css">
+        #bg{width:100px;margin:200px auto;margin-bottom:0px;}
+        #bg button{width:100px;height:50px;}
+        #modal{width:100%;height:100%;background:#000; opacity:.3; position:absolute;left:0;top:0;z-index:3;display:none;}
+        #delete{height:10px;width:10px;border-radius: 5px;border:1px solid #ff7700;color: #ff7700;}
+        #delete:hover{color:#44bf16;}
+        .jzmm>i{cursor: pointer}
+        *{margin:0;padding:0}
+        #dlk{  position:absolute;left:0;top:0;display:none;z-index: 20;}
+        .bd_in {width: 404px;height: auto;margin: 0 auto;padding: 0;background: #0c2138;background-color:rgba(0,0,0,0.4)}
+        .bd_in1 {width: 330px;height: 50px;line-height: 50px;padding-left: 30px;border-bottom: 1px solid #23374f;color: #fff;font-family: "Microsoft YaHei";margin-left: 25px;}
+        .bd_in1 { position:relative;width: 330px;height: 50px;line-height: 50px;padding-left: 20px;border-bottom: 1px solid #22364f;font-family: "Microsoft YaHei";}
+        .bd_in1 h1{list-style: none;margin: 0;padding: 0;font-family: "Microsoft YaHei"; font-size: 17px; font-weight: normal; display: inline-block;}
+        .bd_in1 a{color:#fff;font-size: 14px;text-decoration: underline;}
+        .bd_in1 .xin{ display: inline-block; overflow: hidden; width: 83px; height: 30px; line-height: 30px; position: absolute; top: 10px; right: 10px; text-align: center;}
+        .bd_in1 .btn_close:hover .ico_close{background-position: 0 -12px;}
+        .bd_in2 {width: 404px;height: auto; padding-bottom:20px;padding-top:0px;margin: 0;}
+        .user {width: 100%;height: 42px;text-align:center;padding: 0;display: block;position:relative}
+        .user>img{position:absolute;right:70px;top:7px;width:30px;height:30px}
+        .yh{width: 255px;height: 39px;line-height: 39px;padding: 0 10px 0 45px;border: 1px solid #ccc;color:#F7F9FC;font-size: 14px;font-family: "Microsoft YaHei";outline: none;margin: 0 auto;display: inline-block;border-radius: 50px;background-color: transparent;background: url("images/00_01.png") no-repeat 20px 10px;}
+        .yh:hover {filter: alpha(opacity=50);-moz-opacity: 0.5;-khtml-opacity: 0.5;opacity: 0.5;}
+        input::-webkit-input-placeholder { -webkit-transition: color.5s;}
+        input:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder {color: #fff;-webkit-transition: color.5s;}
+        .mima{text-align:center;width: 100%; height: 42px; margin-top: 15px;margin-bottom: 20px;position:relative;}
+        .dxxtsh{width:100px;height:25px;line-height:25px;display: inline-block; background-color: #ffffda;position:absolute;font-family: "Microsoft YaHei";left:50px;top:32px; font-size:12px;border:#d1b07c 1px solid;border-radius: 4px; display: none;}
+        .dxxtsh b{width:0px;height:0px; border-left: 6px solid transparent;border-right: 6px solid transparent;border-bottom: 6px solid #d1b07c; display: inline-block; position: absolute; left: 50%;top:-6px; margin-left: -10px;}
+        .dxxtsh i{width:0px;height:0px; border-left: 4px solid transparent;border-right: 4px solid transparent;border-bottom: 4px solid #ffffda; display: inline-block;position: absolute; left: 50%;top:-4px;margin-left: -8px;}
+        .mm {outline: none;padding: 0 10px 0 45px;width: 255px; height: 39px; line-height: 39px; border: 1px solid #ccc; color: #F7F9FC; font-size: 14px; font-family: "Microsoft YaHei";border-radius: 50px;background-color: transparent;background: url("./images/00_03.png") no-repeat 20px 10px;}
+        .mm:hover { filter: alpha(opacity=50); -moz-opacity: 0.5; -khtml-opacity: 0.5; opacity: 0.5;}
+        .jzmm { width: 298px; height: 30px; line-height: 30px; font-size: 14px; font-family: "Microsoft YaHei";  margin: 0 auto; display: block; padding: 0; margin-top: 10px; color: #fff; }
+        .jzmm input[type=checkbox]{ margin: 0; padding: 0; display: inline-block; vertical-align: middle; margin-top: -2px;}
+        .jzmm i{float: right;color:#2e95f3;}
+        .dl_btn {width:100%;height: 40px; margin-top: 20px; padding: 0; display:  block;}
+        .dl_btn a{font-size: 16px; text-align: center;  height: 40px; line-height: 40px; display: block;  margin: 0 auto; font-family: "Microsoft YaHei";border-radius: 50px;float:left;}
+        .dl_btn .close_btn{margin-left:43px;border:1px solid #2e95f3;width: 146px;color: #50acff;background: #2e95f3;color:#ffffff;}
+        .dl_btn .close_btn:hover{background: #50acff; }
+        .dl_btn .login_btn{margin-left:20px;background: #2e95f3;width: 148px;color:#ffffff;}
+        .dl_btn .login_btn:hover{ background: #50acff;}
+        /*第三方登录*/
+        .sjzh {width: 50%; height: 20px; line-height: 20px; font-size: 15px; font-family: "Microsoft YaHei"; color: #fff;  margin: 0 auto; margin-top: 25px; display:  block; padding: 0;text-align: center;}
+        .sjzh .qq{background: #2e95f3;border-radius: 50%;width: 40px;height: 40px;}
+        .sjzh span{position: relative;}
+        .sjzh a{ position: absolute;}
+        .sjzh span:nth-of-type(1) a{top:10px;left:11px;}
+        .sjzh span:nth-of-type(2) a{top:10px;left:10px;}
+        .sjzh span:nth-of-type(3) a{top:11px;left:9px;}
+        .sjzh .wb{background: #f81821;border-radius: 50%;width: 40px;height: 40px;}
+        .sjzh .wx{background: #85da48;border-radius: 50%;width: 40px;height: 40px;}
+        /*新用户注册*/
+        .zczh { clear: both; width: 322px; margin: 0 auto; height: 20px; line-height: 20px; margin-top: 20px;display: block;font-size: 14px;font-family: "Microsoft YaHei"; color: #fff; text-align: center;}
+        .zczh a { color: #2e95f3; text-decoration: none; font-weight: normal; float: right;}
+        .zczh a:hover { font-weight: normal; text-decoration: underline; }
+        .dsf {width:480px; height:30px;margin-top: 25px;}
+        .dsf_left{float: left; border-bottom: 1px solid #28394c;width: 30%; margin-left: 10px; margin-top: 10px;}
+        .dsf_center{text-align: center;width: 52%;font-size: 12px;color: #fff;}
+        .dsf_right{border-bottom: 1px solid #28394c;width: 30%;margin-left:245px; margin-top: -5px;}
+        .xz_btn {width: 186px;max-height: 184px;padding: 0;margin: 30px auto 30px auto;overflow: hidden;}
+        .pop {width: 186px;height: 184px;color: #ffffff;font-size: 14px;}
+        .pop:hover {cursor: pointer;}
+        .ewm {width: 186px;height: 24px;margin-top: 14px;float: left;font-size: 13px;font-family: "Microsoft YaHei";color: #fff;text-align: center;line-height: 24px;letter-spacing: 2px;}
+        .error{ height: 40px; line-height: 40px;}
+        .error .err_txt{ width: 270px;color: #FF0000; font-size: 14px;font-family: "Microsoft YaHei"; margin: 0 auto;}
+        /* .dsfdlPIC{width:100%;height:70px;background:url("images/sfdl.png")22px 30px no-repeat} */
+        .dsfdlPIC{width:100%;height:70px;background: url("../icon/cs.png"); background-size: 100%; color: #fff; text-align: center;font-size:12px;margin-top:2px;}
+        .dsfdlPIC p:nth-child(1),p:nth-child(3){width: 30%;float: left;margin: 0 3%;height: 35px;border-bottom: 1px solid #546273;}
+        .dsfdlPIC p:nth-child(2){width: 26%; float: left;line-height: 70px;}
+        .clear{clear:both;height:0;display:block;content:'';overflow:hidden}
+        .clear:after{zoom:1}
+        .dsfdlLOGO{height:45px;width:100%}
+        .dsfdlLOGO>ul{height:100%;width:100%}
+        .dsfdlLOGO>ul>li{height:100%;width:45px;cursor:pointer;float:left;}
+        .QQdl{background:url("images/timg_03.png") -0px 0px no-repeat;margin-left:180px}
+        #QQdl>a{opacity:0;display:block;width: 100%;height: 100%;}
+        #QQdl>a>img{width: 100%;height: 100%;}
+    </style>
+<body rlt="1">
+<div style="display:none">
+    <form action="login" id="loginJumpFormId" method="post">
+        <input type="hidden" name="url" id="jumpUrlId">
+    </form>
+</div>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    $('.logindl').click(function(){
+        var url=window.location.href;
+        window.open('login?url='+encodeURIComponent(url),'_self')
+    });
+    //搜索按钮
+    $('.btn_search').bind('click',function(event) {
+        var k = $.trim($('input[name="keyword"]').val());
+        if (k) {
+            window.location = base+'search?keyword=' + encodeURIComponent(k);
+        } else {
+            $('.search1').addClass('err');
+        }
+        return false;
+    });
+    $("#codeDown").click(function(){
+        $("#imgId").height($(document).height()).show();
+    })
+    $(".chahca img").click(function(){
+        $("#imgId").hide();
+    });
+    $(function(){
+        $('.langsel').bind('click',function(){
+            $('#select_lan').text($(this).attr('data-text'));
+            $('.lantab').hide();
+            var lang = $(this).attr('data-val');
+            if(lang!=''){
+                $.ajax({
+                    url: "lanageChange",
+                    data: {"locale" : lang,"lanage":lang},
+                    dataType: "json",
+                    success:function(){
+                        window.location.reload();
+
+                    }
+                });
+            }
+        });
+        $('#select_div').bind('click',function(){
+            $("#select_lan").text('');
+            $('.lantab').show();
+        });
+
+        if("null"=='en'){
+            $('#mListId').css('right','-55px');
+            $('#userMenuId').css('width','170px');
+        }else{
+            $('#mListId').css('right','-30px');
+            $('#userMenuId').css('width','120px');
+        }
+    })
+
+    function loginClick(){
+        var href = window.location.href;
+        $('#jumpUrlId').val(href);
+        $('#loginJumpFormId').submit();
+    }
+</script>
+<div id="bg">
+    <form>
+        <button id="btn" type="button">请登录</button>
+    </form>
+</div>
+<div id="modal"></div>
+<div class="bd_in" id="dlk">
+    <div class="bd_in1">
+        <h1>用户登录</h1>
+        <a title="" class="xin" href="../view/register.html">新用户注册</a>
+    </div>
+    <div class="bd_in2">
+        <div class="error">
+            <p class="err_txt"></p>
+        </div>
+        <div class="user">
+            <input type="hidden" id="returnUrlId" value="">
+            <input type="hidden" id="isDialog" value="">
+            <input class="yh" id="username" name="username" type="text" placeholder="邮箱/手机号" onchange="GetPwdAndChk()" maxlength="100" autocomplete="off">
+
+        </div>
+        <div class="mima">
+            <input class="mm" id="password" name="password" type="password" placeholder="密码" maxlength="30" autocomplete="off">
+					<span class="dxxtsh">
+						<b></b><i></i>
+						<p>大写锁定已打开</p>
+					</span>
+        </div>
+
+        <div class="jzmm">
+            <input class="checkbox" type="checkbox" value="记住密码">	<!--不再记住密码  id="chkRememberPwd" -->
+            <span>记住密码</span>
+            <i>忘记密码？</i>
+        </div>
+        <div class="dl_btn">
+            <a class="close_btn" href="javascript:;"  id="delete"<!-- onclick="closeDialog()"-->>取消</a>
+            <a class="login_btn" href="javascript:;">登录</a></div>
+        <div class="dsfdlPIC">
+            <p></p>
+            <p>第三方登录</p>
+            <p></p>
+        </div>
+
+        <div class="dsfdlLOGO">
+            <ul class="clear">
+                <li class="QQdl" id="QQdl"></li>
+            </ul>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+
+<div id="login_container" style="width:282px;margin:0 auto;	">
+
+</div>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    function closeDialog(){
+        var index = parent.layer.getFrameIndex('layer_login'); //先得到当前iframe层的索引
+        parent.layer.close(index); //再执行关闭
+    }
+
+    //document.getElementById('pop').onclick = EX.stop;
+    var url = '#';
+
+    function show(msg) {
+        var o = document.getElementById('pop');
+        o.style.display = "";
+        $(o).html(msg);
+        setTimeout(function() {
+            EX.addEvent.call(document, 'click', hide);
+        });
+    }
+
+
+
+
+
+    $(".user>img").on("click",function(){
+        $("#username").val("");
+    })
+
+
+    $(".xz_btn").on('click', ".pop", function() {
+        $(this).css({"display": "none"});
+        EX.addEvent.call(document, 'click', show);
+    });
+
+    function login(){
+        var reetext=$('.err_txt').text();
+        /* if(reetext=='手机号没有注册'){
+         $('.err_txt').text('手机号没有注册');
+         return false;
+         }else if(reetext=='邮箱没有注册'){
+         $('.err_txt').text('邮箱没有注册');
+         return false;
+         }else if(reetext=='请输入邮箱账号或者手机号'){
+         $('.err_txt').text('请输入邮箱账号或者手机号');
+         return false
+         } */
+        //else{
+
+
+        $('.err_txt').text('');
+        var userName = $("#username").val();
+        var password = $("#password").val();
+        if(userName==''){
+
+            $("#username").focus();
+            $('.err_txt').text('请输入邮箱账号或者手机号');
+            return false;
+        }
+        if(password=='' && userName!=''){
+            $("#password").focus();
+            $('.err_txt').text('请输入密码');
+            return false;
+        }
+
+        var tetpat=/^(86)?1[3|5|7|8|][0-9]{9}$/;
+        var empat=/^[\w\d\.\-]{3,32}@[\w\d]+(\.[\w\d]+){1,3}$/;
+        var loginMode='';//登录方式
+        if(tetpat.test(userName)){
+            loginMode=2;
+        }else if(empat.test(userName)){
+            loginMode=1;
+        }
+        if(tetpat.test(userName)||empat.test(userName)){
+
+            $.post("login/login", {
+                        'username': userName,
+                        'password': password,
+                        'loginMode': loginMode
+                    },
+                    function(data) {
+                        console.log(data.message)
+                        if (data.result=='true'){
+                            //记住密码
+                            SetPwdAndChk();
+                            set_cookie('islogin','1');
+                            var urlto=$("#returnUrlId").val();//'http://www.tianjiao.com/';
+                            var isDialog = $('#isDialog').val();
+                            if(urlto.indexOf('register')!=-1 || urlto.indexOf('forgetPassword')!=-1 || urlto.indexOf('goForgetPasswords')!=-1 || urlto.indexOf('resetPasswords')!=-1 || urlto.indexOf('login')!=-1){
+                                urlto = 'http://www.yeesight.com';
+                            }
+                            if(top.location == location){  //没有被iframe引用
+                                if(urlto!=''){
+                                    window.location.href=urlto;
+                                }else{
+                                    window.location.href='';
+                                }
+                            }else{
+
+                                var index = parent.layer.getFrameIndex('layer_login'); //先得到当前iframe层的索引
+                                parent.location.reload();
+                                parent.layer.close(index); //再执行关闭
+                            }
+                        }else if(data.message=='密码错误'){
+                            //$("#username").focus();
+                            //if(data.message=='密码错误'){
+                            $("#password").focus();
+                            //}
+                            $('.err_txt').text('密码错误');
+                        }else{
+                            $("#username").focus();
+                            $('.err_txt').text('账号输入错误');
+
+                        }
+                    }
+            );
+        }else{
+            $('.err_txt').text('邮箱账号或者手机号格式不正确');
+        }
+        //}
+    }
+    /***********记住密码***********/
+    window.onload = function onLoginLoaded() {
+        if (isPostBack == "False") {
+            GetLastUser();
+        }
+    }
+
+    function GetLastUser() {
+        var id = "username"; //GUID标识符
+        var usr = GetCookie(id);
+        if (usr != null) {
+            document.getElementById('username').value = usr;
+        } else {
+            document.getElementById('username').value = "";
+        }
+        //GetPwdAndChk(); 失去焦点了
+    }
+    //点击登录时触发客户端事件
+    function SetPwdAndChk() {
+        //取用户名
+        var usr = document.getElementById('username').value;
+        //将最后一个用户信息写入到Cookie
+        SetLastUser(usr);
+        //如果记住密码选项被选中
+        /* if (document.getElementById('chkRememberPwd').checked == true) {
+         //取密码值
+         var pwd = document.getElementById('password').value;
+         var expdate = new Date();
+         //保存一年
+         expdate.setTime(expdate.getTime() + 365 * (24 * 60 * 60 * 1000));
+         //将用户名和密码写入到Cookie
+         SetCookie('userpwd', pwd, expdate);
+         } else {
+         //如果没有选中记住密码,则立即过期
+         ResetCookie();
+         } */
+    }
+    //记住用户名
+    function SetLastUser(usr){
+        var id = "username";
+        var expdate = new Date();
+
+        //当前时间加上两周的时间  记住密码14天
+        expdate.setTime(expdate.getTime() + 14 * (24 * 60 * 60 * 1000));
+        SetCookie(id, usr, expdate);
+    }
+
+    //密码框得到焦点
+    function  detectCapsLock(event){
+        var e = event||window.event;
+        var o = e.target||e.srcElement;
+        var oTip = o.nextSibling;
+        var keyCode  =  e.keyCode||e.which; // 按键的keyCode
+        var isShift  =  e.shiftKey ||(keyCode  ==   16 ) || false ; // shift键是否按住
+        if (
+                ((keyCode >=   65   &&  keyCode  <=   90 )  &&   !isShift) // Caps Lock 打开，且没有按住shift键
+                || ((keyCode >=   97   &&  keyCode  <=   122 )  &&  isShift)// Caps Lock 打开，且按住shift键
+        ){$('.dxxtsh').show();}
+        else{$('.dxxtsh').hide();}
+    }
+    document.getElementById('password').onkeypress = detectCapsLock;
+
+    //用户名失去焦点时调用该方法
+    function GetPwdAndChk(){
+        $("#password").empty();
+        var usr = document.getElementById('username').value;
+        var pwd = GetCookie('userpwd');
+        if (pwd != null) {
+            document.getElementById('chkRememberPwd').checked = true;
+            document.getElementById('password').value = pwd;
+        } else {
+            document.getElementById('chkRememberPwd').checked = false;
+            document.getElementById('password').value = "";
+        }
+        var tetpat=/^(86)?1[3|5|7|8|][0-9]{9}$/;
+        var empat=/^[\w\d\.\-]{3,32}@[\w\d]+(\.[\w\d]+){1,3}$/;
+        var loginWay='';
+        if(tetpat.test(usr)){
+            loginWay=2;
+        }else if(empat.test(usr)){
+            loginWay=1;
+        };
+        if(tetpat.test(usr)||empat.test(usr)){
+            $.post('login/checkPhoneAndEmail',{'loginWay':loginWay,'emailAndPhone':usr},function(redata){
+                if(redata.head&&redata.head.message=="成功"){
+                    if(loginWay==1){$('.err_txt').text('邮箱没有注册')}
+                    else if(loginWay==2){$('.err_txt').text('手机号没有注册')}
+                }else if(redata.head&&redata.head.message=="email格式不正确"){
+                    $('.err_txt').text('邮箱账号格式不正确');
+                }else if(redata.head&&redata.head.message=="手机号格式不正确"){
+                    $('.err_txt').text('手机号不正确');
+                }else {$('.err_txt').text('')}
+            });
+        }else{
+            $('.err_txt').text('请输入邮箱账号或者手机号')
+        }
+    }
+    //取Cookie的值
+    function GetCookie(name) {
+        var arg = name + "=";
+        var alen = arg.length;
+        var clen = document.cookie.length;
+        var i = 0;
+        while (i < clen) {
+            var j = i + alen;
+            //alert(j);
+            if (document.cookie.substring(i, j) == arg) return getCookieVal(j);
+            i = document.cookie.indexOf(" ", i) + 1;
+            if (i == 0) break;
+        }
+        return null;
+    }
+    var isPostBack = "False";
+
+    function getCookieVal(offset) {
+        var endstr = document.cookie.indexOf(";", offset);
+        if (endstr == -1) endstr = document.cookie.length;
+        return unescape(document.cookie.substring(offset, endstr));
+    }
+    //写入到Cookie
+    function SetCookie(name, value, expires) {
+        var argv = SetCookie.arguments;
+        var argc = SetCookie.arguments.length;
+        var expires = (argc > 2) ? argv[2] : null;
+        var path = (argc > 3) ? argv[3] : null;
+        var domain = (argc > 4) ? argv[4] : null;
+        var secure = (argc > 5) ? argv[5] : false;
+        document.cookie = name + "=" + escape(value) + ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) + "; path=/" + ((domain == null) ? "" : ("; domain=" + domain)) + ((secure == true) ? "; secure" : "");
+    }
+    //重置cookies
+    function ResetCookie() {
+        var expdate = new Date();
+        //SetCookie('username', null, expdate);
+        SetCookie('userpwd', null, expdate);
+    }
+
+    //设置
+    function set_cookie(name,value){
+        var expdate = new Date();
+        expdate.setTime(expdate.getTime() + 1 * (24 * 60 * 60 * 1000));//当前时间加上两周的时间  记住密码1天
+        SetCookie(name, value, expdate);
+    }
+    function get_cookie(name){
+        return GetCookie(name);
+    }
+    //清除
+    function clear_cookie(name){
+        if(name && name!=''){
+            var expdate = new Date();
+            SetCookie(name, null, expdate);
+        }
+    }
+
+
+
+    $(function(){
+        //关闭
+        $('.btn_close').unbind().bind('click',function(){
+            window.location="";
+        });
+        //判断是否是弹出框
+        if(top.location != location){  //被iframe引用
+            $('html').css({'background':'transparent'});
+            $('.mapheade').hide();
+            $('.layui-layer-setwin',window.parent.document).hide();
+
+            document.onclick = function(e){
+                e = e || window.event;
+                if($(e.target).parents(".bd_in").length==0 && $(e.target).parents(".xz_btn").length==0){
+                    //关闭
+                    var index = parent.layer.getFrameIndex('layer_login'); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                }
+            }
+        }
+
+
+        $('.login_btn').unbind().bind('click',function(){
+            login();
+        });
+
+        //回车键登录
+        document.onkeydown=function(event){
+            e = event ? event :(window.event ? window.event : null);
+            if(e.keyCode==13){
+                login();
+            }
+        }
+    })
+
+</script>
+
+
+<script type="text/javascript">
+    //第三方登录流程
+    $(function(){
+        var codewx='';
+        if(codewx){
+            window.open('http://buzz.yeesight.com/login/thirdLoginWeixin?code='+codewx,'_self')
+        };
+
+        //qq第三方登录
+        $('.QQdl').unbind().bind('click',function(){
+            setTimeout(function(){window.close();})
+            //点击登录按钮
+            QC.Login.showPopup({
+                appId:"101331242",
+                redirectURI:"http://buzz.yeesight.com/login/register/thirdLogin"
+            });
+
+        });
+
+
+
+
+        $('.WXdl').unbind().bind('click',function(){
+//	setTimeout(function(){window.close();})
+            //点击登录按钮
+            var obj = new WxLogin({
+                id:"login_container",
+                appid: "wxcb178b7413d4aae4",
+                response_type:"code",
+                scope: "snsapi_login",
+                redirect_uri: "http://buzz.yeesight.com/login",
+                state: "STATE#wechat_redirect",
+                style: "",
+                href: ""
+            });
+        });
+
+        //忘记密码的行为
+        $(".jzmm>i").on("click",function(){
+            window.location="forgetPassword"
+        });
+
+
+    })
+
+</script>
+
+
+<script src="js/xn_tools.js"></script>
+<script>
+    window.onload = function(){
+        var aInput =document.getElementsByTagName('input');
+
+        var title = document.getElementsByTagName('h1')[0];
+        var oBtn = document.getElementById('btn');
+        var modal = document.getElementById('modal');
+        var dlk = document.getElementById('dlk');
+        var a = document.getElementById('delete');
+        oBtn.onclick = function(){
+            modal.style.display = 'block';
+            dlk.style.display = 'block';
+            var l = (document.documentElement.clientWidth - dlk.offsetWidth)/2;
+            var t = (document.documentElement.clientHeight - dlk.offsetHeight)/2;
+            dlk.style.left = l + 'px';
+            dlk.style.top = t + 'px';
+            this.blur();
+            //aInput[0].focus();
+            drag(dlk);
+        };
+
+        a.onclick = function(){
+            modal.style.display = 'none';
+            dlk.style.display = 'none';
+        };
+
+
+    };
+</script>
+</body></html>

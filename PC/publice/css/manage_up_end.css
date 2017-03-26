@@ -1,0 +1,21 @@
+.con_content{width:62.5%;margin:0 auto;}
+.product_title{font-size:20px;padding-top:27px;}
+.product_title a{color:#494949;}
+.nav_left{float:left;}
+.con_content .nav{width:110px;text-align: center;margin-right:23.4375%;}
+.con_content .nav_ul{margin-top:80px;}
+.con_content .nav_ul li{margin-bottom: 20px;}
+.con_content .nav_ul li a{color:#fd7e2a;display: block;padding:10px 0;}
+.con_content .nav_ul li a:hover{border-radius:4px;background-color: #fd7e2a;color:#fff;}
+.con_right{float:right;}
+.con_right .sele{float:right;}
+.con_right select{height:47px;width:150px;  border:1px solid #fff;font-size:14px;}
+.con_right select:focus{
+    border:1px solid #fff;
+    outline:none;/*去除输入文字时候的蓝色边框*/
+}
+.con_right select option{border:1px solid #fff;border-bottom: 1px dashed #ccc;height:54px;line-height: 54px;width:150px;}
+.search{
+    position: relative;}
+.search input{width:308px;height:36px;border:1px solid #f3f3f3;margin-top:10px;margin-right:50px;border-radius: 5px;padding-left:10px;}
+.search span{width:25px;height:25px;position:absolute;top:16px;right:58px;}
